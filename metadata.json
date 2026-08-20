@@ -1,0 +1,6 @@
+{
+  "name": "Steam Hour Boosting",
+  "description": "Steam game playtime hour booster with live bot controls, Steam Guard 2FA generator, 32-game AppID manager, real-time logging, and script exporter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

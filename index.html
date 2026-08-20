@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Steam Hour Booster</title>
+    <meta name="description" content="Steam Hour Booster application." />
+    <meta property="og:title" content="Steam Hour Booster" />
+    <meta property="og:description" content="Steam Hour Booster application." />
+    <script>
+      // Gracefully prevent unhandled websocket rejection notices in sandboxed preview iframe
+      window.addEventListener('unhandledrejection', function (e) {
+        try {
+          var reason = e.reason;
+          var reasonStr = reason ? String(reason) : '';
+          var messageStr = (reason && reason.message) ? String(reason.message) : '';
+          var stackStr = (reason && reason.stack) ? String(reason.stack) : '';
+          
+          if (
+            reasonStr.indexOf('WebSocket') !== -1 ||
+            reasonStr.indexOf('websocket') !== -1 ||
+            messageStr.indexOf('WebSocket') !== -1 ||
+            messageStr.indexOf('websocket') !== -1 ||
+            messageStr.indexOf('closed without opened') !== -1 ||
+            stackStr.indexOf('WebSocket') !== -1
+          ) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        } catch (err) {}
+      });
+
+      window.addEventListener('error', function (e) {
+        try {
+          var messageStr = e.message ? String(e.message) : '';
+          var errorStr = e.error ? String(e.error) : '';
+          if (
+            messageStr.indexOf('WebSocket') !== -1 ||
+            messageStr.indexOf('websocket') !== -1 ||
+            messageStr.indexOf('closed without opened') !== -1 ||
+            errorStr.indexOf('WebSocket') !== -1 ||
+            errorStr.indexOf('websocket') !== -1
+          ) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        } catch (err) {}
+      }, true);
+    </script>
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
